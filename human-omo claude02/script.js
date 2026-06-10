@@ -1,13 +1,13 @@
-const frameCount = 103;
+const frameCount = 91;
 const desktopFrameDir = "new003-webp-desktop";
 const mobileFrameDir = "new003-webp-mobile";
 
 const stage = document.querySelector(".sequence-stage");
 const canvas = document.querySelector(".sequence-canvas");
 const ctx = canvas.getContext("2d", { alpha: true });
-const heroTitle = document.querySelector(".hero-title");
-const heroDescription = document.querySelector(".hero-description");
+const heroCopy = document.querySelector(".hero-copy");
 const loaderText = document.querySelector(".loader-bubble__text");
+const scrollCue = document.querySelector(".scroll-cue");
 const greetings = ["Hello", "สวัสดี", "Hola", "Bonjour", "Ciao", "Hallo", "こんにちは", "안녕하세요", "你好", "Olá", "नमस्ते"];
 
 if ("scrollRestoration" in history) {
@@ -280,20 +280,17 @@ function drawSequenceFrame(progress) {
 function updateHeroContent(progress) {
   const copyProgress = easeOutCubic(progress / 0.24);
   const remaining = 1 - copyProgress;
-  const titleX = -112 * remaining;
-  const titleY = 10 * remaining;
-  const descriptionX = 112 * remaining;
-  const descriptionY = -8 * remaining;
+  const copyX = 112 * remaining;
+  const copyY = -8 * remaining;
   const opacity = clamp(copyProgress * 1.25);
 
-  if (heroTitle) {
-    heroTitle.style.opacity = opacity;
-    heroTitle.style.transform = `translate3d(${titleX}vw, ${titleY}px, 0)`;
+  if (heroCopy) {
+    heroCopy.style.opacity = opacity;
+    heroCopy.style.transform = `translate3d(${copyX}vw, ${copyY}px, 0)`;
   }
 
-  if (heroDescription) {
-    heroDescription.style.opacity = opacity;
-    heroDescription.style.transform = `translate3d(${descriptionX}vw, ${descriptionY}px, 0)`;
+  if (scrollCue) {
+    scrollCue.classList.toggle("is-visible", progress >= 0.24);
   }
 }
 
