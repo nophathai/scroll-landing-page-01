@@ -9,6 +9,10 @@ const heroCopy = document.querySelector(".hero-copy");
 const loaderText = document.querySelector(".loader-bubble__text");
 const scrollCue = document.querySelector(".scroll-cue");
 const greetings = ["Hello", "สวัสดี", "Hola", "Bonjour", "Ciao", "Hallo", "こんにちは", "안녕하세요", "你好", "Olá", "नमस्ते"];
+const embeddedMode = isEmbeddedDocument() || new URLSearchParams(window.location.search).has("embed");
+
+document.documentElement.classList.toggle("framer-embed", embeddedMode);
+document.body.classList.toggle("framer-embed", embeddedMode);
 
 if ("scrollRestoration" in history) {
   history.scrollRestoration = "manual";
@@ -45,6 +49,14 @@ function isCompactHero() {
   return window.matchMedia("(max-width: 760px)").matches;
 }
 
+function isEmbeddedDocument() {
+  try {
+    return window.self !== window.top;
+  } catch {
+    return true;
+  }
+}
+
 function buildFramePaths(dir) {
   return Array.from({ length: frameCount }, (_, index) => {
     return `${dir}/frame-${String(index + 1).padStart(3, "0")}.webp`;
@@ -53,6 +65,7 @@ function buildFramePaths(dir) {
 
 function getScrollProgress(element) {
   if (!element) return 0;
+  if (embeddedMode) return 1;
 
   const rect = element.getBoundingClientRect();
   const distance = rect.height - window.innerHeight;
@@ -306,7 +319,8 @@ function drawSequenceFrame(progress) {
 }
 
 function updateHeroContent(progress) {
-  const copyProgress = easeOutCubic(progress / 0.18);
+  const revealProgress = embeddedMode ? 1 : progress;
+  const copyProgress = easeOutCubic(revealProgress / 0.18);
   const remaining = 1 - copyProgress;
   const copyX = isCompactHero() ? 0 : 112 * remaining;
   const copyY = isCompactHero() ? 12 * remaining : -8 * remaining;
@@ -319,7 +333,7 @@ function updateHeroContent(progress) {
   }
 
   if (scrollCue) {
-    scrollCue.classList.toggle("is-visible", progress >= 0.18);
+    scrollCue.classList.toggle("is-visible", embeddedMode || progress >= 0.18);
   }
 }
 
