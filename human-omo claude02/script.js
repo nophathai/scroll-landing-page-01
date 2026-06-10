@@ -5,13 +5,16 @@ const mobileFrameDir = "new003-webp-mobile";
 const stage = document.querySelector(".sequence-stage");
 const canvas = document.querySelector(".sequence-canvas");
 const ctx = canvas.getContext("2d", { alpha: true });
-const progressBar = document.querySelector(".sequence-progress span");
 const heroTitle = document.querySelector(".hero-title");
 const heroDescription = document.querySelector(".hero-description");
+const loaderText = document.querySelector(".loader-bubble__text");
+const greetings = ["Hello", "สวัสดี", "Hola", "Bonjour", "Ciao", "Hallo", "こんにちは", "안녕하세요", "你好", "Olá", "नमस्ते"];
 
 if ("scrollRestoration" in history) {
   history.scrollRestoration = "manual";
 }
+
+document.body.classList.add("is-loading");
 
 let frameDir = "";
 let framePaths = [];
@@ -23,6 +26,7 @@ let smoothProgress = 0;
 let lastDrawKey = "";
 let resizeTimer = 0;
 let warmIndex = 0;
+let greetingTimer = 0;
 let reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 function clamp(value, min = 0, max = 1) {
@@ -126,6 +130,22 @@ async function prepareSequence() {
   drawSequenceFrame(smoothProgress);
   warmNearbyFrames(smoothProgress, true);
   canvas.classList.add("is-ready");
+  startGreetingBadge();
+}
+
+function startGreetingBadge() {
+  if (!loaderText || document.body.classList.contains("sequence-ready")) return;
+
+  document.body.classList.remove("is-loading");
+  document.body.classList.add("sequence-ready");
+  loaderText.textContent = "Hello";
+
+  let index = 1;
+  window.clearInterval(greetingTimer);
+  greetingTimer = window.setInterval(() => {
+    loaderText.textContent = greetings[index % greetings.length];
+    index += 1;
+  }, 1200);
 }
 
 function drawImageCover(targetContext, image, width, height) {
@@ -257,13 +277,6 @@ function drawSequenceFrame(progress) {
   warmNearbyFrames(progress);
 }
 
-function updateProgressBar(progress) {
-  if (!progressBar) return;
-
-  const axis = isMobileViewport() ? "scaleX" : "scaleY";
-  progressBar.style.transform = `${axis}(${progress})`;
-}
-
 function updateHeroContent(progress) {
   const copyProgress = easeOutCubic(progress / 0.24);
   const remaining = 1 - copyProgress;
@@ -295,7 +308,6 @@ function tick() {
 
   drawSequenceFrame(smoothProgress);
   updateHeroContent(targetProgress);
-  updateProgressBar(targetProgress);
   requestAnimationFrame(tick);
 }
 
