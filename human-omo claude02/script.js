@@ -1,10 +1,10 @@
-const frameCount = 91;
+const frameCount = 83;
 const desktopFrameDir = "new003-webp-desktop";
 const mobileFrameDir = "new003-webp-mobile";
 
 const stage = document.querySelector(".sequence-stage");
 const canvas = document.querySelector(".sequence-canvas");
-const ctx = canvas.getContext("2d", { alpha: true });
+const ctx = canvas.getContext("2d", { alpha: false, desynchronized: true });
 const heroCopy = document.querySelector(".hero-copy");
 const loaderText = document.querySelector(".loader-bubble__text");
 const scrollCue = document.querySelector(".scroll-cue");
@@ -38,6 +38,10 @@ function easeOutCubic(value) {
 }
 
 function isMobileViewport() {
+  return window.matchMedia("(max-width: 760px)").matches;
+}
+
+function isCompactHero() {
   return window.matchMedia("(max-width: 760px)").matches;
 }
 
@@ -138,6 +142,15 @@ function startGreetingBadge() {
 
   document.body.classList.remove("is-loading");
   document.body.classList.add("sequence-ready");
+
+  if (isCompactHero()) {
+    document.body.classList.add("mobile-sequence-ready");
+    window.clearInterval(greetingTimer);
+    loaderText.textContent = "Hi";
+    return;
+  }
+
+  document.body.classList.remove("mobile-sequence-ready");
   loaderText.textContent = "Hello";
 
   let index = 1;
@@ -146,6 +159,20 @@ function startGreetingBadge() {
     loaderText.textContent = greetings[index % greetings.length];
     index += 1;
   }, 1200);
+}
+
+function syncBubbleMode() {
+  if (!loaderText || !document.body.classList.contains("sequence-ready")) return;
+
+  if (isCompactHero()) {
+    document.body.classList.add("mobile-sequence-ready");
+    window.clearInterval(greetingTimer);
+    loaderText.textContent = "Hi";
+  } else if (document.body.classList.contains("mobile-sequence-ready")) {
+    document.body.classList.remove("mobile-sequence-ready");
+    document.body.classList.remove("sequence-ready");
+    startGreetingBadge();
+  }
 }
 
 function drawImageCover(targetContext, image, width, height) {
@@ -182,7 +209,7 @@ function renderFrame(index) {
   const frame = document.createElement("canvas");
   frame.width = canvas.width;
   frame.height = canvas.height;
-  drawImageCover(frame.getContext("2d", { alpha: true }), image, frame.width, frame.height);
+  drawImageCover(frame.getContext("2d", { alpha: false }), image, frame.width, frame.height);
   frameCache.set(index, frame);
 
   while (frameCache.size > maxCachedFrames()) {
@@ -252,7 +279,8 @@ function warmNearbyFrames(progress, immediate = false) {
 function drawSequenceFrame(progress) {
   if (!sequenceReady) return;
 
-  const exactFrame = clamp(progress) * (frameCount - 1);
+  const sequenceProgress = clamp(progress / 0.9);
+  const exactFrame = sequenceProgress * (frameCount - 1);
   const currentIndex = Math.floor(exactFrame);
   const nextIndex = Math.min(currentIndex + 1, frameCount - 1);
   const blend = exactFrame - currentIndex;
@@ -274,29 +302,30 @@ function drawSequenceFrame(progress) {
   }
 
   lastDrawKey = drawKey;
-  warmNearbyFrames(progress);
+  warmNearbyFrames(sequenceProgress);
 }
 
 function updateHeroContent(progress) {
-  const copyProgress = easeOutCubic(progress / 0.24);
+  const copyProgress = easeOutCubic(progress / 0.18);
   const remaining = 1 - copyProgress;
-  const copyX = 112 * remaining;
-  const copyY = -8 * remaining;
+  const copyX = isCompactHero() ? 0 : 112 * remaining;
+  const copyY = isCompactHero() ? 12 * remaining : -8 * remaining;
   const opacity = clamp(copyProgress * 1.25);
 
   if (heroCopy) {
     heroCopy.style.opacity = opacity;
-    heroCopy.style.transform = `translate3d(${copyX}vw, ${copyY}px, 0)`;
+    heroCopy.style.setProperty("--copy-x", `${copyX}vw`);
+    heroCopy.style.setProperty("--copy-y", `${copyY}px`);
   }
 
   if (scrollCue) {
-    scrollCue.classList.toggle("is-visible", progress >= 0.24);
+    scrollCue.classList.toggle("is-visible", progress >= 0.18);
   }
 }
 
 function tick() {
   targetProgress = getScrollProgress(stage);
-  const easing = reduceMotion ? 1 : 0.28;
+  const easing = reduceMotion ? 1 : 0.34;
   smoothProgress += (targetProgress - smoothProgress) * easing;
 
   if (Math.abs(targetProgress - smoothProgress) < 0.001) {
@@ -311,6 +340,8 @@ function tick() {
 window.addEventListener("resize", () => {
   resizeCanvas();
   prepareSequence();
+  syncBubbleMode();
+  updateHeroContent(targetProgress);
 }, { passive: true });
 
 window.matchMedia("(prefers-reduced-motion: reduce)").addEventListener("change", (event) => {
