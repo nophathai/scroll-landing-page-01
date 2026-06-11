@@ -65,12 +65,27 @@ function buildFramePaths(dir) {
 
 function getScrollProgress(element) {
   if (!element) return 0;
-  if (embeddedMode) return 1;
+  if (embeddedMode) return getEmbeddedScrollProgress();
 
   const rect = element.getBoundingClientRect();
   const distance = rect.height - window.innerHeight;
   if (distance <= 0) return 0;
   return clamp(-rect.top / distance);
+}
+
+function getEmbeddedScrollProgress() {
+  try {
+    const frame = window.frameElement;
+    const parentWindow = window.parent;
+    if (!frame || !parentWindow) return 0;
+
+    const rect = frame.getBoundingClientRect();
+    const parentHeight = parentWindow.innerHeight || window.innerHeight;
+    const virtualDistance = Math.max(rect.height - parentHeight, parentHeight * 0.95);
+    return clamp(-rect.top / virtualDistance);
+  } catch {
+    return 0;
+  }
 }
 
 function getCanvasRatio() {
@@ -319,8 +334,7 @@ function drawSequenceFrame(progress) {
 }
 
 function updateHeroContent(progress) {
-  const revealProgress = embeddedMode ? 1 : progress;
-  const copyProgress = easeOutCubic(revealProgress / 0.18);
+  const copyProgress = easeOutCubic(progress / 0.18);
   const remaining = 1 - copyProgress;
   const copyX = isCompactHero() ? 0 : 112 * remaining;
   const copyY = isCompactHero() ? 12 * remaining : -8 * remaining;
@@ -333,7 +347,7 @@ function updateHeroContent(progress) {
   }
 
   if (scrollCue) {
-    scrollCue.classList.toggle("is-visible", embeddedMode || progress >= 0.18);
+    scrollCue.classList.toggle("is-visible", progress >= 0.18);
   }
 }
 
@@ -350,6 +364,21 @@ function tick() {
   updateHeroContent(targetProgress);
   requestAnimationFrame(tick);
 }
+
+function forwardEmbeddedWheel(event) {
+  if (!embeddedMode) return;
+
+  try {
+    if (window.parent && window.parent !== window) {
+      event.preventDefault();
+      window.parent.scrollBy({ top: event.deltaY, left: event.deltaX, behavior: "auto" });
+    }
+  } catch {
+    // Cross-origin Framer embeds may block direct parent scrolling; the page still remains non-scrollable inside the iframe.
+  }
+}
+
+window.addEventListener("wheel", forwardEmbeddedWheel, { passive: false });
 
 window.addEventListener("resize", () => {
   resizeCanvas();
