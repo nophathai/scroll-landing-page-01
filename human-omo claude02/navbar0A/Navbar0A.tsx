@@ -33,8 +33,8 @@ type Props = {
 
 export default function Navbar0A({
     logo = "Logo.png",
-    homeHref = "/",
-    resumeHref = "https://drive.google.com/file/d/1AWzAorv_-3degF5769R7MCqNyC6ZUAth/view?usp=sharing",
+    homeHref = "https://nophathai.xyz/",
+    resumeHref = "https://drive.google.com/file/d/1puTbi7d4yI_JUJCgYgfAr1UAvf_gmi9f/view?usp=drive_link",
 }: Props) {
     return (
         <header style={styles.header}>
@@ -228,12 +228,12 @@ addPropertyControls(Navbar0A, {
     homeHref: {
         type: ControlType.String,
         title: "Home Link",
-        defaultValue: "/",
+        defaultValue: "https://nophathai.xyz/",
     },
     resumeHref: {
         type: ControlType.String,
         title: "Resume Link",
         defaultValue:
-            "https://drive.google.com/file/d/1AWzAorv_-3degF5769R7MCqNyC6ZUAth/view?usp=sharing",
+            "https://drive.google.com/file/d/1puTbi7d4yI_JUJCgYgfAr1UAvf_gmi9f/view?usp=drive_link",
     },
 })

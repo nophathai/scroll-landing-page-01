@@ -10,7 +10,7 @@ type Props = {
 export default function Contact0A({
     headline = "Feel free to\ncontact me",
     linkedinHref = "https://www.linkedin.com/in/nophathai-vasasmith",
-    resumeHref = "https://drive.google.com/file/d/1AWzAorv_-3degF5769R7MCqNyC6ZUAth/view?usp=sharing",
+    resumeHref = "https://drive.google.com/file/d/1puTbi7d4yI_JUJCgYgfAr1UAvf_gmi9f/view?usp=drive_link",
 }: Props) {
     return (
         <section style={styles.section} aria-label="Contact">
@@ -131,6 +131,6 @@ addPropertyControls(Contact0A, {
         type: ControlType.String,
         title: "Resume",
         defaultValue:
-            "https://drive.google.com/file/d/1AWzAorv_-3degF5769R7MCqNyC6ZUAth/view?usp=sharing",
+            "https://drive.google.com/file/d/1puTbi7d4yI_JUJCgYgfAr1UAvf_gmi9f/view?usp=drive_link",
     },
 })
