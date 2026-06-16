@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#fcfcfc">
+    <title>Nophathai Portfolio</title>
+    <link rel="preload" as="image" href="new003-webp-desktop/frame-001.webp" media="(min-width: 761px)">
+    <link rel="preload" as="image" href="new003-webp-desktop/frame-002.webp" media="(min-width: 761px)">
+    <link rel="preload" as="image" href="new003-webp-mobile/frame-001.webp" media="(max-width: 760px)">
+    <link rel="preload" as="image" href="new003-webp-mobile/frame-002.webp" media="(max-width: 760px)">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="preload" as="image" href="Logo.png">
+    <link rel="preload" as="image" href="Logo00.png">
+    <link rel="preload" as="image" href="gallery/gal_01.jpg">
+    <style>
+      html, body { margin: 0; background: #dfe7ee; }
+      .loader-bubble { position: fixed; z-index: 100; inset: 0; display: grid; place-items: center; background: #dfe7ee; }
+      .loader-bubble__text { display: grid; place-items: center; width: clamp(180px, 28vw, 360px); aspect-ratio: 1; border-radius: 50%; background: #9da3a5; color: #fff; font-family: system-ui, sans-serif; font-size: clamp(62px, 11vw, 150px); font-weight: 900; }
+    </style>
+    <link rel="stylesheet" href="styles.css?v=revision-1-5-hero-white-type">
+  </head>
+  <body>
+    <div class="loader-bubble" aria-live="polite">
+      <div class="loader-bubble__text">Hi</div>
+    </div>
+
+    <div class="read-cursor" aria-hidden="true">Read more</div>
+    <div class="read-cursor-dot" aria-hidden="true"></div>
+    <div class="pencil-cursor" aria-hidden="true">✏️</div>
+
+    <header class="site-nav" data-tint>
+      <a class="site-logo" href="#home" aria-label="Go to Home">
+        <img class="site-logo__mark site-logo__mark--light" src="Logo.png" alt="Nophathai">
+        <img class="site-logo__mark site-logo__mark--dark" src="Logo00.png" alt="">
+      </a>
+      <nav class="site-menu" aria-label="Main navigation">
+        <div class="project-menu">
+          <a class="nav-link" href="#first-projectsme">Projects</a>
+          <div class="project-dropdown" aria-label="Project links">
+            <a href="http://nophathai.design/alphasme">
+              <img src="reference/main_projects/alphaSME.avif" alt="">
+              <span>Alpha SME</span>
+            </a>
+            <a href="https://nophathai.design/eastspring">
+              <img src="reference/main_projects/EastspingTH.avif" alt="">
+              <span>Eastspring M ChoiceTH</span>
+            </a>
+            <a href="https://nophathai.design/principal">
+              <img src="reference/main_projects/principalTH.avif" alt="">
+              <span>Principal TH</span>
+            </a>
+          </div>
+        </div>
+        <a class="nav-link" href="https://drive.google.com/file/d/1Dq_dZ4c1t-OBdTb2jqxnWWY12pHBrEqv/view?usp=drive_link" target="_blank" rel="noreferrer">Resume</a>
+      </nav>
+    </header>
+
+    <main class="page-shell">
+      <section class="sequence-stage" id="home" aria-label="Nophathai hero">
+        <div class="sequence-stage__pin">
+          <canvas class="sequence-canvas" width="1920" height="1080" aria-hidden="true"></canvas>
+          <div class="sequence-shade" aria-hidden="true"></div>
+          <div class="vertical-word" aria-hidden="true">
+            <span>NOPHATHAI</span>
+            <span>NOPHATHAI</span>
+            <span>NOPHATHAI</span>
+          </div>
+          <div class="hero-copy">
+            <h1>I'm Nop</h1>
+            <p class="hero-description">I'm a Product designer. I transform fragmented fintech products into unified, state-driven platforms across banking and investment ecosystems, enabling clarity, trust, and confident decisions at scale.</p>
+            <a class="pill-button scroll-cue" href="#first-projectsme" aria-label="Go to projects">
+              <span>Go to projects</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="main-projects" id="first-projectsme" aria-label="Main projects">
+        <div class="stack-wrap">
+          <a class="project-card main-card read-target" href="http://nophathai.design/alphasme" data-tilt="-1.8">
+            <div class="project-media">
+              <img src="reference/main_projects/alphaSME.avif" alt="alphaSME product mockup">
+            </div>
+            <div class="project-info">
+              <h2>alpha SME</h2>
+              <p>Digitizing 10M THB SME Transfers with Real-Time Overdraft Execution</p>
+              <p>Duration :2024-present</p>
+              <p>Role :UXUI designer</p>
+              <p>Industry :Finance</p>
+              <div class="tags">
+                <span>Overdraft-loan</span>
+                <span>Split transaction</span>
+                <span>eKYC</span>
+                <span>Design system</span>
+              </div>
+            </div>
+          </a>
+
+          <a class="project-card main-card read-target" href="https://nophathai.design/eastspring" data-tilt="1.6">
+            <div class="project-media">
+              <img src="reference/main_projects/EastspingTH.avif" alt="Eastspring TH product mockup">
+            </div>
+            <div class="project-info">
+              <h2>Eastspring TH</h2>
+              <p>Designing a multi-stakeholder Provident Fund ecosystem</p>
+              <p>Duration :2023-2024</p>
+              <p>Role :UXUI designer</p>
+              <p>Industry :Finance</p>
+              <div class="tags">
+                <span>Provident fund</span>
+                <span>Portfolio</span>
+                <span>Employer system</span>
+                <span>Retirement plan</span>
+              </div>
+            </div>
+          </a>
+
+          <a class="project-card main-card read-target" href="https://nophathai.design/principal" data-tilt="-1.2">
+            <div class="project-media">
+              <img src="reference/main_projects/principalTH.avif" alt="Principal TH product mockup">
+            </div>
+            <div class="project-info">
+              <h2>Principal TH</h2>
+              <p>Merging Mutual Fund &amp; Provident Fund into a unified investment platform</p>
+              <p>Duration : 2022-2024</p>
+              <p>Role : UXUI designer</p>
+              <p>Industry : Finance</p>
+              <div class="tags">
+                <span>Mutual fund</span>
+                <span>QR payment</span>
+                <span>Switch fund</span>
+                <span>NDID</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <section class="side-projects" aria-label="Side projects">
+        <a class="side-card side-card--active read-target" href="https://nophathai.design/asc-project">
+          <div class="side-media"><img src="reference/side_projects/ACS_POS_project.avif" alt="ACS POS project"></div>
+          <div class="side-copy">
+            <h2>ACS POS project</h2>
+            <p>Implemented a multi-site factory inventory management system by creating standardized requisition forms to streamline tax documentation and improve employee workflow tracking.</p>
+            <p>Duration: 2023-2024<br>Role: UXUI designer<br>Industry: Finance</p>
+            <div class="tags"><span>POS system</span><span>Stock management</span></div>
+          </div>
+        </a>
+
+        <a class="side-card read-target" href="https://nophathai.design/line-hr-connect">
+          <div class="side-media"><img src="reference/side_projects/Line_HR-connect_chatbot.avif" alt="Line HR-connect chatbot"></div>
+          <div class="side-copy">
+            <h2>Line HR-connect chatbot</h2>
+            <p>Access Internal HR Services Anytime, at Your Convenience</p>
+            <p>Duration: 2023-2024<br>Role: UXUI designer<br>Industry: Finance</p>
+            <div class="tags"><span>GoogleDialogflow</span><span>LineDev</span></div>
+          </div>
+        </a>
+
+        <a class="side-card read-target" href="https://nophathai.design/youtube-subscriptions">
+          <div class="side-media"><img src="reference/side_projects/Youtube_subscriptions.avif" alt="Youtube subscriptions"></div>
+          <div class="side-copy">
+            <h2>Youtube subscriptions</h2>
+            <p>Organize your subscriptions, stay focused, and watch what truly matters to you</p>
+            <p>Duration: 2023-2024<br>Role: UXUI designer<br>Industry: Finance</p>
+            <div class="tags"><span>Filter subscriptions</span><span>Manage group</span></div>
+          </div>
+        </a>
+      </section>
+
+      <section class="chalk-section" aria-label="Design statement">
+        <canvas class="chalk-canvas" aria-hidden="true"></canvas>
+        <div class="falling-pencil" aria-hidden="true">🍎</div>
+        <button class="chalk-eraser" type="button" aria-label="Clear chalk drawing">
+          <img src="eraser001.png" alt="">
+        </button>
+        <div class="chalk-sentence" aria-label="Design is creative problem-solving, whether refining the old or inventing the new. When it is right, it is naturally beautiful"></div>
+      </section>
+
+      <section class="gallery-section" aria-label="Gallery">
+        <div class="marquee gallery-marquee">
+          <span>Designing spaces, now designing screens. Same passion, different canvas.</span>
+          <span>Designing spaces, now designing screens. Same passion, different canvas.</span>
+          <span>Designing spaces, now designing screens. Same passion, different canvas.</span>
+          <span>Designing spaces, now designing screens. Same passion, different canvas.</span>
+        </div>
+        <div class="gallery-track" aria-label="Carousel gallery"></div>
+        <div class="gallery-pagination" aria-label="Gallery pagination"></div>
+      </section>
+
+      <section class="why-contact-shell">
+        <section class="why-me" aria-label="Why me">
+          <div class="marquee skills-marquee skills-marquee--top">
+            <span>RESEARCH&nbsp;&nbsp;&nbsp; DESIGN&nbsp;&nbsp;&nbsp; WIREFRAME&nbsp;&nbsp;&nbsp; PROTOTYPE&nbsp;&nbsp;&nbsp; USABILITY TESTING&nbsp;&nbsp;&nbsp;</span>
+            <span>RESEARCH&nbsp;&nbsp;&nbsp; DESIGN&nbsp;&nbsp;&nbsp; WIREFRAME&nbsp;&nbsp;&nbsp; PROTOTYPE&nbsp;&nbsp;&nbsp; USABILITY TESTING&nbsp;&nbsp;&nbsp;</span>
+            <span>RESEARCH&nbsp;&nbsp;&nbsp; DESIGN&nbsp;&nbsp;&nbsp; WIREFRAME&nbsp;&nbsp;&nbsp; PROTOTYPE&nbsp;&nbsp;&nbsp; USABILITY TESTING&nbsp;&nbsp;&nbsp;</span>
+            <span>RESEARCH&nbsp;&nbsp;&nbsp; DESIGN&nbsp;&nbsp;&nbsp; WIREFRAME&nbsp;&nbsp;&nbsp; PROTOTYPE&nbsp;&nbsp;&nbsp; USABILITY TESTING&nbsp;&nbsp;&nbsp;</span>
+          </div>
+          <div class="why-layout">
+            <h2>Why me?</h2>
+            <div class="bento-grid">
+              <article class="bento-card bento-card--wide">
+                <img src="why_me/why_01.png" alt="">
+                <p>10 years of bringing design ideas to life.</p>
+              </article>
+              <article class="bento-card">
+                <img src="why_me/why_02.png" alt="">
+                <p>Thoughtful execution with a sharp eye for detail.</p>
+              </article>
+              <article class="bento-card">
+                <img src="why_me/why_03.png" alt="">
+                <p>Constantly evolving alongside new technologies.</p>
+              </article>
+              <article class="bento-card bento-card--tall">
+                <img src="why_me/why_04.png" alt="">
+                <p>Friendly, energetic, and always up for a good challenge.</p>
+              </article>
+              <article class="bento-card">
+                <img src="why_me/why_05.png" alt="">
+                <p>An absolute cat lover.</p>
+              </article>
+            </div>
+          </div>
+          <div class="marquee skills-marquee skills-marquee--bottom">
+            <span>RESEARCH&nbsp;&nbsp;&nbsp; DESIGN&nbsp;&nbsp;&nbsp; WIREFRAME&nbsp;&nbsp;&nbsp; PROTOTYPE&nbsp;&nbsp;&nbsp; USABILITY TESTING&nbsp;&nbsp;&nbsp;</span>
+            <span>RESEARCH&nbsp;&nbsp;&nbsp; DESIGN&nbsp;&nbsp;&nbsp; WIREFRAME&nbsp;&nbsp;&nbsp; PROTOTYPE&nbsp;&nbsp;&nbsp; USABILITY TESTING&nbsp;&nbsp;&nbsp;</span>
+            <span>RESEARCH&nbsp;&nbsp;&nbsp; DESIGN&nbsp;&nbsp;&nbsp; WIREFRAME&nbsp;&nbsp;&nbsp; PROTOTYPE&nbsp;&nbsp;&nbsp; USABILITY TESTING&nbsp;&nbsp;&nbsp;</span>
+            <span>RESEARCH&nbsp;&nbsp;&nbsp; DESIGN&nbsp;&nbsp;&nbsp; WIREFRAME&nbsp;&nbsp;&nbsp; PROTOTYPE&nbsp;&nbsp;&nbsp; USABILITY TESTING&nbsp;&nbsp;&nbsp;</span>
+          </div>
+        </section>
+
+        <section class="contact-section" aria-label="Contact">
+          <div class="contact-highlight" aria-hidden="true"></div>
+          <div class="contact-copy">
+            <h2>Feel free to<br>contact me</h2>
+            <div class="contact-actions">
+              <a class="pill-button" href="https://www.linkedin.com/in/nophathai-vasasmith" target="_blank" rel="noreferrer">Linkedin</a>
+              <a class="pill-button" href="https://drive.google.com/file/d/1Dq_dZ4c1t-OBdTb2jqxnWWY12pHBrEqv/view?usp=drive_link" target="_blank" rel="noreferrer">Resume</a>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="script.js?v=revision-1-5-hero-white-type"></script>
+  </body>
+</html>
