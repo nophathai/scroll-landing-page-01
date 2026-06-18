@@ -168,6 +168,10 @@ section {
   transition: color 260ms var(--ease), transform 260ms var(--ease), opacity 260ms var(--ease);
 }
 
+.section-timeline__item[data-section-target="why-me"] {
+  display: none;
+}
+
 .section-timeline__dot {
   position: relative;
   z-index: 1;
@@ -1091,6 +1095,10 @@ body.has-pencil .pencil-cursor {
   min-height: 132svh;
   padding: 78px clamp(18px, 5vw, 80px) 64px;
   overflow: hidden;
+}
+
+.why-me[data-section-hidden="true"] {
+  display: none;
 }
 
 .why-layout {

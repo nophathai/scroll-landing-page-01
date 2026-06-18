@@ -30,7 +30,9 @@ const timelineTargets = timelineItems.map((item) => {
     item,
     section: document.getElementById(item.dataset.sectionTarget),
   };
-}).filter((entry) => entry.section);
+}).filter((entry) => {
+  return entry.section && !entry.item.hidden && entry.section.dataset.sectionHidden !== "true";
+});
 
 if ("scrollRestoration" in history) {
   history.scrollRestoration = "manual";
@@ -349,7 +351,8 @@ function setupChalkWords() {
 function updateChalkWords() {
   const raw = getSectionProgress(chalkSection);
   const rect = chalkSection.getBoundingClientRect();
-  const nextRect = whySection?.getBoundingClientRect();
+  const nextStopSection = whySection?.dataset.sectionHidden === "true" ? contactSection : whySection;
+  const nextRect = nextStopSection?.getBoundingClientRect();
   const nextSectionEntering = nextRect ? nextRect.top <= window.innerHeight : false;
   const paletteVisible = rect.top < window.innerHeight - 16 && rect.bottom > 64 && !nextSectionEntering;
   document.body.classList.toggle("is-in-chalk", paletteVisible);

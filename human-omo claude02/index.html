@@ -19,7 +19,7 @@
       .loader-bubble { position: fixed; z-index: 100; inset: 0; display: grid; place-items: center; background: #dfe7ee; }
       .loader-bubble__text { display: grid; place-items: center; width: clamp(180px, 28vw, 360px); aspect-ratio: 1; border-radius: 50%; background: #9da3a5; color: #000; font-family: system-ui, sans-serif; font-size: clamp(62px, 11vw, 150px); font-weight: 900; }
     </style>
-    <link rel="stylesheet" href="styles.css?v=2-1-40-restore-scroll-behavior">
+    <link rel="stylesheet" href="styles.css?v=2-1-42-hide-why-timeline">
   </head>
   <body>
     <div class="loader-bubble" aria-live="polite">
@@ -77,7 +77,7 @@
         <span class="section-timeline__dot" aria-hidden="true"></span>
         <span class="section-timeline__label">Chalk board</span>
       </a>
-      <a class="section-timeline__item" href="#why-me" data-section-target="why-me">
+      <a class="section-timeline__item" href="#why-me" data-section-target="why-me" hidden>
         <span class="section-timeline__dot" aria-hidden="true"></span>
         <span class="section-timeline__label">Why me</span>
       </a>
@@ -229,7 +229,7 @@
       </section>
 
       <section class="why-contact-shell">
-        <section class="why-me" id="why-me" aria-label="Why me">
+        <section class="why-me" id="why-me" aria-label="Why me" data-section-hidden="true" hidden>
           <div class="marquee skills-marquee skills-marquee--top">
             <span>RESEARCH&nbsp;&nbsp;&nbsp; DESIGN&nbsp;&nbsp;&nbsp; WIREFRAME&nbsp;&nbsp;&nbsp; PROTOTYPE&nbsp;&nbsp;&nbsp; USABILITY TESTING&nbsp;&nbsp;&nbsp;</span>
             <span>RESEARCH&nbsp;&nbsp;&nbsp; DESIGN&nbsp;&nbsp;&nbsp; WIREFRAME&nbsp;&nbsp;&nbsp; PROTOTYPE&nbsp;&nbsp;&nbsp; USABILITY TESTING&nbsp;&nbsp;&nbsp;</span>
@@ -282,6 +282,6 @@
       </section>
     </main>
 
-    <script src="script.js?v=2-1-40-restore-scroll-behavior"></script>
+    <script src="script.js?v=2-1-42-hide-why-timeline"></script>
   </body>
 </html>
