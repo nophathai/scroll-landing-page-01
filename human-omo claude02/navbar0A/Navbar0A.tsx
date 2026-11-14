@@ -10,17 +10,17 @@ type ProjectItem = {
 const projects: ProjectItem[] = [
     {
         label: "Alpha SME",
-        href: "https://nophathai.design/alphasme",
+        href: "https://nophathai.site/alphasme",
         image: "reference/main_projects/alphaSME.avif",
     },
     {
         label: "Eastspring M ChoiceTH",
-        href: "https://nophathai.design/eastspring",
+        href: "https://nophathai.site/eastspring",
         image: "reference/main_projects/EastspingTH.avif",
     },
     {
         label: "Principal TH",
-        href: "https://nophathai.design/principal",
+        href: "https://nophathai.site/principal",
         image: "reference/main_projects/principalTH.avif",
     },
 ]
