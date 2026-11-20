@@ -34,7 +34,7 @@ type Props = {
 export default function Navbar0A({
     logo = "Logo.png",
     homeHref = "https://nophathai.xyz/",
-    resumeHref = "https://drive.google.com/file/d/1puTbi7d4yI_JUJCgYgfAr1UAvf_gmi9f/view?usp=drive_link",
+    resumeHref = "https://drive.google.com/file/d/1kkb8WzNJ1483X98zJ_db0IReFlYFHBup/view?usp=sharing",
 }: Props) {
     return (
         <header style={styles.header}>
@@ -234,6 +234,6 @@ addPropertyControls(Navbar0A, {
         type: ControlType.String,
         title: "Resume Link",
         defaultValue:
-            "https://drive.google.com/file/d/1puTbi7d4yI_JUJCgYgfAr1UAvf_gmi9f/view?usp=drive_link",
+            "https://drive.google.com/file/d/1kkb8WzNJ1483X98zJ_db0IReFlYFHBup/view?usp=sharing",
     },
 })
