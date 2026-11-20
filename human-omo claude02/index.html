@@ -19,7 +19,7 @@
       .loader-bubble { position: fixed; z-index: 100; inset: 0; display: grid; place-items: center; background: #dfe7ee; }
       .loader-bubble__text { display: grid; place-items: center; width: clamp(180px, 28vw, 360px); aspect-ratio: 1; border-radius: 50%; background: #9da3a5; color: #000; font-family: system-ui, sans-serif; font-size: clamp(62px, 11vw, 150px); font-weight: 900; }
     </style>
-    <link rel="stylesheet" href="styles.css?v=07-11-2026">
+    <link rel="stylesheet" href="styles.css?v=20-11-2026">
   </head>
   <body>
     <div class="loader-bubble" aria-live="polite">
@@ -291,6 +291,24 @@
 
         <section class="contact-section" id="contact" aria-label="Contact">
           <div class="contact-highlight" aria-hidden="true"></div>
+          <div class="footer-clips" aria-label="Play my videos">
+            <button class="footer-clip read-target" type="button" data-cursor-label="Play video" data-video="footer-pic-and-video/stuff-haloween.mp4" aria-label="Play Halloween video" aria-haspopup="dialog">
+              <img src="footer-pic-and-video/stuff-haloween.png" alt="Halloween" loading="lazy" width="600" height="600">
+              <span class="footer-clip__play" aria-hidden="true">▶</span>
+            </button>
+            <button class="footer-clip read-target" type="button" data-cursor-label="Play video" data-video="footer-pic-and-video/stuff-mookrata.mp4" aria-label="Play Mookrata video" aria-haspopup="dialog">
+              <img src="footer-pic-and-video/stuff-mookrata.png" alt="Mookrata" loading="lazy" width="600" height="600">
+              <span class="footer-clip__play" aria-hidden="true">▶</span>
+            </button>
+            <button class="footer-clip read-target" type="button" data-cursor-label="Play video" data-video="footer-pic-and-video/stuff-somtum.mp4" aria-label="Play Somtum video" aria-haspopup="dialog">
+              <img src="footer-pic-and-video/stuff-somtum.png" alt="Somtum" loading="lazy" width="600" height="600">
+              <span class="footer-clip__play" aria-hidden="true">▶</span>
+            </button>
+            <button class="footer-clip read-target" type="button" data-cursor-label="Play video" data-video="footer-pic-and-video/stuff-tcb.mp4" aria-label="Play TCB video" aria-haspopup="dialog">
+              <img src="footer-pic-and-video/stuff-tcb.png" alt="TCB" loading="lazy" width="600" height="600">
+              <span class="footer-clip__play" aria-hidden="true">▶</span>
+            </button>
+          </div>
           <div class="contact-copy">
             <h2>Feel free to<br>contact me</h2>
             <div class="contact-actions">
@@ -302,6 +320,11 @@
       </section>
     </main>
 
-    <script src="script.js?v=07-11-2026"></script>
+    <dialog class="footer-player" aria-label="Video player">
+      <button class="footer-player__close" type="button" aria-label="Close video">×</button>
+      <video controls playsinline preload="none"></video>
+      <p class="footer-player__error" role="status" hidden>Unable to play this video. Please try again.</p>
+    </dialog>
+    <script src="script.js?v=20-11-2026"></script>
   </body>
 </html>

@@ -479,6 +479,7 @@ function updateCardStack() {
 function setupReadCursor() {
   document.querySelectorAll(".read-target").forEach((target) => {
     target.addEventListener("pointerenter", () => {
+      readCursor.textContent = target.dataset.cursorLabel || "Read more";
       readActive = true;
       document.body.classList.add("has-read-cursor");
     });
@@ -786,9 +787,51 @@ setupChalkWords();
 resizeChalkCanvas();
 setupGallery();
 setupSideCards();
+setupFooterClips();
 setupReadCursor();
 setupTimelineNavigation();
 setupBentoReveal();
 prepareSequence();
 updateHeroContent(0);
 requestAnimationFrame(tick);
+
+function setupFooterClips() {
+  const gallery = document.querySelector(".footer-clips");
+  const dialog = document.querySelector(".footer-player");
+  if (!gallery || !dialog) return;
+  const cards = [...gallery.children];
+  for (let i = cards.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [cards[i], cards[j]] = [cards[j], cards[i]];
+  }
+  cards.forEach(card => {
+    gallery.append(card);
+    card.style.setProperty("--clip-angle", `${(Math.random() * 24 - 12).toFixed(1)}deg`);
+  });
+  const video = dialog.querySelector("video");
+  const error = dialog.querySelector(".footer-player__error");
+  let trigger;
+  let previousOverflow;
+  cards.forEach(card => card.addEventListener("click", () => {
+    trigger = card;
+    previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    document.body.classList.remove("has-read-cursor");
+    readActive = false;
+    error.hidden = true;
+    video.src = card.dataset.video;
+    dialog.showModal();
+    video.play().catch(() => { /* Native controls allow manual playback. */ });
+  }));
+  dialog.addEventListener("click", event => {
+    if (event.target === dialog || event.target.closest(".footer-player__close")) dialog.close();
+  });
+  video.addEventListener("error", () => { error.hidden = false; });
+  dialog.addEventListener("close", () => {
+    video.pause();
+    video.removeAttribute("src");
+    video.load();
+    document.body.style.overflow = previousOverflow;
+    trigger?.focus({ preventScroll: true });
+  });
+}
